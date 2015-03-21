@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var senderLabel: UILabel!
     @IBOutlet weak var enterNameTextField: UITextField!
     @IBOutlet weak var enterMessageTextField: UITextField!
     @IBOutlet weak var mailButton: UIButton!
@@ -18,12 +19,21 @@ class ViewController: UIViewController {
    
     @IBAction func sendMailButtonPressed(sender: UIButton) {
         //  Set Message Label Properties
+        // --------------------------------------------------------
         messageLabel.text = enterMessageTextField.text
         messageLabel.textColor = UIColor.redColor()
         messageLabel.hidden = false
-        NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "hideMessageLabel", userInfo: nil, repeats: false)
+        // Set Sender Label properties
+        // --------------------------------------------------------
+        senderLabel.text = "From: \(enterNameTextField.text)"
+        senderLabel.textColor = UIColor.blueColor()
+        senderLabel.hidden = false
+        // Schedule a timer to hide the Message and Sender labels
+        // --------------------------------------------------------
+        NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "hideLabels", userInfo: nil, repeats: false)
         
         //  Set Mail Button Properties
+        // --------------------------------------------------------
         toggleSendMail()
         NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "toggleSendMail", userInfo: nil, repeats: false)
         enterNameTextField.text = ""
@@ -32,9 +42,11 @@ class ViewController: UIViewController {
         enterNameTextField.resignFirstResponder()
     }
     
-    func hideMessageLabel() {
+    func hideLabels() {
         messageLabel.hidden = true
+        senderLabel.hidden = true
     }
+    
     
     func toggleSendMail() {
         mailButton.enabled = !mailButton.enabled
