@@ -41,7 +41,8 @@ class ViewController: UIViewController {
         if (mailButton.enabled) {
             mailButton.setTitle("Send Mail", forState: UIControlState.Normal)
             mailButton.backgroundColor = mailButtonBGColor
-        } else {
+        }
+        else {
             mailButton.setTitle("Mail Sent", forState: UIControlState.Normal)
             mailButton.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.8)
         }
